@@ -1,10 +1,3 @@
-# Full Name [N] Author(s)
-# Scholar profile
-# Publication title [L] Title
-# Research topics [BK] Research Topics
-# Methodology Used [AM] Methodologies Used
-# RRI ID [C] ID
-
 import pandas as pd
 import sqlite3
 
@@ -20,7 +13,7 @@ def create():
   df.drop(df.shape[0]-1, inplace=True)
   df["Microplastic Sizes"] = pd.to_numeric(df["Microplastic Sizes"], errors="coerce")
   df["Year Published"] = pd.to_numeric(df["Year Published"], errors="coerce")
-  # df.to_json("data.json", orient='records')
+  df.fillna("NA", inplace=True)
 
   connection = sqlite3.connect("database/data.db")
   df.to_sql("masterlist", connection, if_exists='replace', index=True)
