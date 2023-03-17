@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
-import os, time
+import os
 from flask_apscheduler import APScheduler
 import init_db
 import query
