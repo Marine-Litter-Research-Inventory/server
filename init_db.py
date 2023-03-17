@@ -1,4 +1,5 @@
 import pandas as pd
+import time
 import sqlite3
 
 key = '1yRLGaQk3-9UlopftPr5e8F-X3pKkjwLlZWcTwai6_Ds'
@@ -20,9 +21,8 @@ def create():
   cur = connection.cursor()
   res = cur.execute("SELECT * FROM masterlist LIMIT 1")
   if res is not None:
-    print("Database init successfully")
+    current = time.time()
+    print(f"Database init successfully at {time.ctime(current)}")
   else:
     print("Something went wrong with initing database")
   connection.close()
-
-

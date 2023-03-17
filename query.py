@@ -12,6 +12,7 @@ def search(data):
   res = cursor.execute(f"SELECT * from masterlist {query}")
   res = res.fetchall()
   connection.close()
+  
   return res
 
 def regexp(pattern, text):
@@ -32,13 +33,14 @@ def generate_query(data):
   for (index, query) in enumerate(data.values()):
     column = query["column"]
     pattern = query["pattern"]
+    operator = query["operator"]
     if column == "W:CF":
       range_query = columns_range.get(index, pattern)
       result += range_query
     else:
       if index == 0:
-        result += f"WHERE [{column}] regexp '{pattern}'"
+        result += f"WHERE [{column}] {operator} '{pattern}'"
       else:
-        result += f" AND [{column}] regexp '{pattern}'"
+        result += f" AND [{column}] {operator} '{pattern}'"
   
   return result
